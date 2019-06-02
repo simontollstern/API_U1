@@ -132,6 +132,12 @@ function App() {
       default:
         break;
     }
+    let textFields = document.querySelectorAll('input[type="text"]'); // Bad practice in React whatever
+    if(textFields.length > 0){
+      for(let field of textFields){
+        field.value = '';
+      }
+    }
   }
 
   const get = () => {
@@ -143,13 +149,15 @@ function App() {
   const getByQuery = (query) => {
     fetch('http://localhost:3001/students/?name=' + query)
       .then(res => res.json())
-      .then(data => setStudents([data]));
+      .then(data => setStudents([data]))
+      .catch(() => setStudents([]));
   }
 
   const getById = (id) => {
     fetch('http://localhost:3001/students/' + id)
       .then(res => res.json())
-      .then(data => setStudents([data]));
+      .then(data => setStudents([data]))
+      .catch(() => setStudents([]));
   }
 
   const post = (student) => {
@@ -173,7 +181,8 @@ function App() {
       body: JSON.stringify(student)
     })
     .then(res => res.json())
-    .then(() => get());
+    .then(() => get())
+    .catch(() => get());
   }
 
   const deleteById = (id) => {
@@ -220,12 +229,12 @@ function App() {
         <div className="url"><pre><code>localhost:3001/students/{path}{query}{id}</code></pre></div>
         <form onSubmit={submit}>
           <div>
-            <span><input type="radio" name="method" onChange={updateMethod} value="GET" defaultChecked /> GET</span>
-            <span><input type="radio" name="method" onChange={updateMethod} value="GET_QUERY" /> GET (Query)</span>
-            <span><input type="radio" name="method" onChange={updateMethod} value="GET_ID" /> GET (Id)</span>
-            <span><input type="radio" name="method" onChange={updateMethod} value="POST" /> POST</span>
-            <span className="disabled"><input type="radio" name="method" onChange={updateMethod} value="PUT" disabled /> PUT</span>
-            <span className="disabled"><input type="radio" name="method" onChange={updateMethod} value="DELETE" disabled /> DELETE</span>
+            <label><input type="radio" name="method" onChange={updateMethod} value="GET" defaultChecked /> GET</label>
+            <label><input type="radio" name="method" onChange={updateMethod} value="GET_QUERY" /> GET (Query)</label>
+            <label><input type="radio" name="method" onChange={updateMethod} value="GET_ID" /> GET (Id)</label>
+            <label><input type="radio" name="method" onChange={updateMethod} value="POST" /> POST</label>
+            <label className="disabled"><input type="radio" name="method" onChange={updateMethod} value="PUT" disabled /> PUT</label>
+            <label className="disabled"><input type="radio" name="method" onChange={updateMethod} value="DELETE" disabled /> DELETE</label>
           </div>
 
           {method === 'GET_QUERY' &&
@@ -290,6 +299,10 @@ function App() {
                 <input type="text" name="city" defaultValue={tempUserExisting.address.city} onInput={updateExistingStudent} />
               </label>
             </Fragment>
+          }
+
+          {method === 'DELETE' &&
+            <p>Press 'OK' to confirm deletion</p>
           }
 
           <input type="submit" value="GO" />

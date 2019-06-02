@@ -72,7 +72,7 @@ form > div{
   justify-content: space-between;
 }
 
-form div span{
+form div label{
   background-color: #eee;
   padding: 10px;
   border-radius: 10px;
@@ -81,12 +81,12 @@ form div span{
   font-size: 14px;
 }
 
-form div span.disabled{
+form div label.disabled{
   color: rgba(0,0,0,0.5);
   cursor: not-allowed;
 }
 
-label{
+form > label{
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
