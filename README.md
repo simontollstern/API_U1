@@ -131,7 +131,7 @@ Response:
 #### POST `/students`
 ```
 Request:
-curl -X POST localhost:3001/students -H "Content-Type: application/json" -d { "name": "example", "email": "example", "address": { "street": "example", "zipCode": "example", "city": "example" }}
+curl -X POST localhost:3001/students -H "Content-Type: application/json" -d '{ "name": "example", "email": "example", "address": { "street": "example", "zipCode": "example", "city": "example" }}'
 
 Response:
 201 Created
@@ -150,7 +150,7 @@ Response:
 #### PUT `/students/{id}`
 ```
 Request:
-curl -X PUT localhost:3001/students/5ced1f7d7c0c41586c49d2a6 -H "Content-Type: application/json" -d { "name": "example", "email": "example", "address": { "street": "example",  "zipCode": "example", "city": "example" }}
+curl -X PUT localhost:3001/students/5ced1f7d7c0c41586c49d2a6 -H "Content-Type: application/json" -d '{ "name": "example", "email": "example", "address": { "street": "example",  "zipCode": "example", "city": "example" }}'
 
 Response:
 200 OK (If updated)
