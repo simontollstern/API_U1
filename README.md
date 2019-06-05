@@ -131,67 +131,47 @@ Response:
 #### POST `/students`
 ```
 Request:
-curl localhost:3001/students/
--H "Content-Type: application/json"
--d {
-  "name": "example"
-  "email": "example"
-  "address": {
-    "street": "example"
-    "zipCode": "example"
-    "city": "example"
-  }
-}
+curl -X POST localhost:3001/students -H "Content-Type: application/json" -d { "name": "example", "email": "example", "address": { "street": "example", "zipCode": "example", "city": "example" }}
 
 Response:
 201 Created
 {
-  "_id": "someNewId"
-  "name": "example"
-  "email": "example"
+  "_id": "someNewId",
+  "name": "example",
+  "email": "example",
   "address": {
-    "street": "example"
-    "zipCode": "example"
+    "street": "example",
+    "zipCode": "example",
     "city": "example"
-  }
+  },
   "__v": 0
 }
 ```
 #### PUT `/students/{id}`
 ```
 Request:
-curl localhost:3001/students/5ced1f7d7c0c41586c49d2a6
--H "Content-Type: application/json"
--d {
-  "name": "example"
-  "email": "example"
-  "address": {
-    "street": "example"
-    "zipCode": "example"
-    "city": "example"
-  }
-}
+curl -X PUT localhost:3001/students/5ced1f7d7c0c41586c49d2a6 -H "Content-Type: application/json" -d { "name": "example", "email": "example", "address": { "street": "example",  "zipCode": "example", "city": "example" }}
 
 Response:
 200 OK (If updated)
 201 Created (If created)
 204 No change (If no change)
 {
-  "_id": "someNewId"
-  "name": "example"
-  "email": "example"
+  "_id": "someNewId",
+  "name": "example",
+  "email": "example",
   "address": {
-    "street": "example"
-    "zipCode": "example"
-    "city": "example"
-  }
+    "street": "example",
+    "zipCode": "example",
+    "city": "example",
+  },
   "__v": 0
 }
 ```
 #### DELETE `/students/{id}`
 ```
 Request:
-curl localhost:3001/students/5ced1f7d7c0c41586c49d2a6
+curl -X DELETE localhost:3001/students/5ced1f7d7c0c41586c49d2a6
 
 Response:
 200 OK (If deleted)
